@@ -20,7 +20,7 @@ A total of **10 levels** are solved, and each solution is exported as a configur
 * **Check again** is used to validate the current setup, and the logs at the bottom are used to understand why something fails (missing gateway, invalid address, no route forward/reverse, etc.). 
 * Before moving to the next level, the configuration should be exported using **Get my config**, since that exported file is what gets submitted. 
 
-### Submission (what should be inside this repo)
+### Submission
 
 * The repository root should contain **10 exported configuration files** (**1 per level**). 
 * During the defense, only what exists inside the repository is evaluated, so filenames and location should be kept clean and double-checked. 
@@ -32,7 +32,7 @@ During the defense, three random levels are expected to be solved within a limit
 
 ## Resources
 
-### Networking concepts studied (what they are in practice)
+### Networking concepts studied
 
 * **TCP/IP addressing (IPv4)**: the system used to identify interfaces and move packets between networks. In NetPractice, every link works only if both sides are addressed consistently. 
 * **Subnet mask / CIDR**: the rule that splits an IP into *network part* and *host part*. This is what allows calculating the network address, broadcast, host range, and deciding whether two interfaces are on the same subnet (e.g., `/25`, `/28`, `/30`). 
@@ -43,16 +43,22 @@ During the defense, three random levels are expected to be solved within a limit
 
 ### References (what each one helped with)
 
-* **[Official subject PDF (42)](./en.subject.pdf)**: defines the rules, deliverable format (10 config files), how the interface works, and what must be explained during the defense.
-* **[tblaase / Net_Practice](https://github.com/tblaase/Net_Practice/tree/main)**: community notes and level-by-level hints that help build intuition for CIDR splits and routing patterns.
-* **[caroldaniel / 42sp-cursus-netpractice](https://github.com/caroldaniel/42sp-cursus-netpractice)**: condensed explanations of common pitfalls (wrong gateway, wrong network, missing return route).
-* **[lpaube / NetPractice (README.es.md)](https://github.com/lpaube/NetPractice/blob/main/README.es.md)**: Spanish explanations and subnetting reminders, useful as a quick refresher.
-* **[42 GitBook guide](https://42-cursus.gitbook.io/guide/4-rank-04/netpractice)**: a broader 42-oriented summary of what NetPractice expects and how to approach it efficiently.
-* **[NetPractice: An Intro to IP Addresses and Subnets](https://www.youtube.com/watch?v=HQUw0CfQWAM)**: introduction to IP addressing and subnetting basics.
-* **[Netpractice 42 - IPs, Routers, Tablas de Rutas y Trazas](https://www.youtube.com/watch?v=pwjAyiscts8)**: overview of IPs, routers, routing tables, and how to read traces/logs in NetPractice.
-* **[Netpractice 42 - Resolución de ejercicios con errores](https://www.youtube.com/watch?v=6yAnT4YzmvQ)**: practical walkthroughs solving common NetPractice mistakes and debugging patterns.
+* **[Official subject PDF (42)](./en.subject.pdf)**: The source of truth for the project: what NetPractice is, what the deliverable looks like (10 exported configs), and what is expected during the defense.
 
-### AI usage (how it was used and for what)
+* **[tblaase / Net_Practice](https://github.com/tblaase/Net_Practice/tree/main)**: A structured “mini-handbook” plus **level-by-level walkthroughs**. It’s organized into *Basics* (special IP ranges, masks, switches/routers, routing tables) and then *Levels 1–10*, which is useful to compare patterns between exercises.
+* **[caroldaniel / 42sp-cursus-netpractice](https://github.com/caroldaniel/42sp-cursus-netpractice)**: A concept-first guide that explains the foundations (what a network is, TCP/IP addressing, IPv4 + subnet masks, switch/router behavior, routing tables) before connecting those ideas to NetPractice. Good for building intuition when the “why” is missing.
+
+* **[lpaube / NetPractice (README.es.md)](https://github.com/lpaube/NetPractice/blob/main/README.es.md)**: A detailed guide (Spanish version available) with a clear *Important Concepts* section (TCP, IP address, subnet mask, switch, router) and then a Levels section. Helpful as a quick refresher when stuck on routing-table logic.
+
+* **[42 GitBook guide — NetPractice](https://42-cursus.gitbook.io/guide/4-rank-04/netpractice)**: A high-level overview of what NetPractice is and how the training flow works (10 levels, “link all machines”), plus navigation to theory/early levels. Useful as orientation rather than a deep technical reference.
+
+* **[NetPractice: An Intro to IP Addresses and Subnets](https://www.youtube.com/watch?v=HQUw0CfQWAM)**: Concept-focused walkthrough for NetPractice: revisits TCP/IP, LAN basics, what an IP address is, and subnetting fundamentals (with timestamps), useful as a quick reset before solving levels.
+
+* **[Netpractice 42 - IPs, Routers, Tablas de Rutas y Trazas](https://www.youtube.com/watch?v=pwjAyiscts8)**: Spanish video focused on the exact pieces that usually block NetPractice: IPs, routers, routing tables, and reading traces/logs.
+
+* **[Netpractice 42 - Resolución de ejercicios con errores](https://www.youtube.com/watch?v=6yAnT4YzmvQ)**: Spanish “debugging” style video aimed at solving exercises by spotting typical mistakes (gateway reachability, missing return routes, wrong CIDR/network, etc.).
+
+### AI usage
 
 AI was used as a learning assistant to:
 
