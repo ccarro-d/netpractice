@@ -34,12 +34,43 @@ During the defense, three random levels are expected to be solved within a limit
 
 ### Networking concepts studied
 
-* **TCP/IP addressing (IPv4)**: the system used to identify interfaces and move packets between networks. In NetPractice, every link works only if both sides are addressed consistently. 
-* **Subnet mask / CIDR**: the rule that splits an IP into *network part* and *host part*. This is what allows calculating the network address, broadcast, host range, and deciding whether two interfaces are on the same subnet (e.g., `/25`, `/28`, `/30`). 
-* **Default gateway**: the “exit” used by a host to reach destinations outside its local subnet; it must be directly reachable from that host (i.e., inside the same subnet). 
-* **Routers and routing tables**: routers forward packets between different subnets. A routing table is essentially a set of rules of the form “destination network → next hop”, used when the destination is not directly connected. 
-* **Switches**: devices that forward traffic inside a LAN (layer-2 behavior). In NetPractice logs, it is normal to see the switch “trying” multiple links and endpoints discarding packets that aren’t for them. 
-* **OSI layers (high level)**: a mental model to separate “switching/L2” problems (same subnet, MAC-level forwarding) from “routing/L3” problems (subnets, gateways, routes). 
+- **Network**
+  > **Definition:** A network is a set of devices connected in a way that allows them to exchange data, following shared rules (protocols).  
+  > **In NetPractice:** Every diagram is basically a collection of small networks connected together. The whole game is figuring out which devices are in the same network (same subnet) and how traffic moves between networks (routing).
+
+- **TCP/IP**
+  > **Definition:** TCP/IP is a suite of protocols that defines how data is addressed, transported, routed, and delivered across networks. IP handles addressing/routing; TCP adds reliable, ordered delivery on top of IP (UDP is an alternative transport without that reliability).  
+  > **In NetPractice:** The project is mostly “IP world” (addresses, subnets, gateways, routes). TCP isn’t configured directly, but it helps to remember the big picture: first the packet must reach the correct network (IP/routing), then transport sits above that.
+
+- **OSI model**
+  > **Definition:** The OSI model is a conceptual framework that describes network communication in layers, to separate responsibilities (what happens “locally”, what happens “between networks”, etc.).  
+  > **In NetPractice:** No memorization of 7 layers is needed. It’s mainly a mental tool to avoid mixing concepts: local connectivity inside a segment vs routing between segments.
+
+- **IPv4 addressing**
+  > **Definition:** IPv4 is one version of IP addressing, using 32-bit addresses written in dotted decimal (e.g., `163.172.250.12`). Another common IP version is IPv6 (not covered here).  
+  > **In NetPractice:** Every interface in the diagram needs an IPv4 address that makes sense for its subnet. If the address doesn’t belong to the expected subnet range (given the mask), links won’t behave as intended even if the numbers “look close”.
+
+- **Subnet mask**
+  > **Subnet mask — Definition:** A subnet mask is a 32-bit value that splits an IPv4 address into a **network part** and a **host part**, defining the subnet’s size and boundaries.  
+  > **CIDR — Definition:** CIDR is a compact way to write the same mask as a *prefix length* (e.g., `/28` means “28 bits are network bits”). The prefix length is the count of `1` bits in the mask, and it determines the subnet size: **number of addresses = 2^(32 − prefix)** (usable hosts are usually that minus network/broadcast).  
+  > **In NetPractice:** This is the core skill. The mask/CIDR is what lets you compute the network block, broadcast, and valid host range, and check whether two interfaces are actually on the same subnet.
+
+- **Switch and LAN**
+  > **Switch — Definition:** A switch is a device that connects multiple devices within the same local network and forwards traffic based on MAC addresses (local delivery).  
+  > **LAN — Definition:** A LAN is a local network (home/office-style) where devices share the same local segment/subnet.  
+  > **In NetPractice:** Think of the switch as the practical solution to “I have multiple devices but only one uplink” (the classic “modem/router has limited ports” problem). It lets several devices share the same local segment so they can talk locally and also reach the upstream router.
+
+- **Router**
+  > **Definition:** A router is a device that connects different networks (subnets) and forwards IP packets between them based on destination IP addresses.  
+  > **In NetPractice:** Routers are the junctions between subnets. Most levels are about making routers aware of remote networks and ensuring traffic can go out *and* come back.
+
+- **Routing table**
+  > **Definition:** A routing table is a set of rules mapping **destination networks (prefixes)** to a **next hop** (or outgoing interface). A static route is a manually configured entry in that table.  
+  > **In NetPractice:** Always read a route as: **“to reach THIS network → send to THIS neighbor”**. Routes should usually target networks (CIDR), not single host IPs, and the next hop must be directly reachable from that router (on-link).
+
+- **Default gateway**
+  > **Definition:** A default gateway is the next-hop router a host uses to reach any destination outside its local subnet (the host’s “exit door”).  
+  > **In NetPractice:** Golden rule: the gateway must be in the **same subnet** as the host interface.
 
 ### References (what each one helped with)
 
